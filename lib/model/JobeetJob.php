@@ -17,6 +17,21 @@
  * @package    lib.model
  */
 class JobeetJob extends BaseJobeetJob {
+
+	public function getCompanySlug()
+	{
+		return Jobeet::slugify($this->getCompany());
+	}
+
+	public function getPositionSlug()
+	{
+		return Jobeet::slugify($this->getPosition());
+	}
+
+	public function getLocationSlug()
+	{
+		return Jobeet::slugify($this->getLocation());
+	}
 	
 	public function __toString()
 	{
