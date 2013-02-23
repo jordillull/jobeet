@@ -1,6 +1,20 @@
 job:
   class:   sfPropelRouteCollection
   options: { model: JobeetJob }
+
+job_category:
+  url: /category/:name_slug/:id
+  class: sfPropelRoute
+  options:
+    model: JobeetCategory
+    type: object
+    method_for_criteria: doSelectActive
+  requirements:
+    sf_method: [get] 
+  param: 
+    module: job
+    action: category
+
  
 job_show_user:
   url:     /job/:company_slug/:location_slug/:id/:position_slug
@@ -11,8 +25,8 @@ job_show_user:
     method_for_criteria: doSelectActive
   param:   { module: job, action: show }
   requirements:
-    id: \d+
-    sf_method: [get]
+    id: \d+ 
+    sf_method: [get] 
  
 # default rules
 homepage:

@@ -31,4 +31,9 @@ class JobeetCategory extends BaseJobeetCategory {
 		return JobeetJobPeer::getActiveJobs($criteria); 
 	}
 
+	public function getNameSlug()
+	{
+		return Jobeet::Slugify($this->getName());
+	}
+
 } // JobeetCategory

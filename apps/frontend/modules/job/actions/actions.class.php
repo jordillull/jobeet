@@ -11,9 +11,14 @@ class jobActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
 	{
-    //$this->JobeetJobs = JobeetJobPeer::getActiveJobs();
-		$this->categories = JobeetCategoryPeer::getWithJobs();
-  }
+		$this->categories = JobeetCategoryPeer::getWithJobs(null);
+  } 
+
+  public function executeCategory(sfWebRequest $request)
+	{
+		$this->category = $this->getRoute()->getObject();
+		$this->categories = JobeetCategoryPeer::getWithJobs($this->category);
+	}
 
   public function executeShow(sfWebRequest $request)
   {

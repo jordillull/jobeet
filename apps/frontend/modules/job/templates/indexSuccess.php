@@ -7,7 +7,9 @@
 				<div class="feed">
 					<a href="">Feed</a>
 				</div>
-			<h1><?php echo $category ?></h1> 
+				<a href="<?php echo url_for('job_category', $category) ?>">
+					<h1><?php echo $category ?></h1> 
+				</a>
 			</div> 
 		
 		<table class="jobs"> 

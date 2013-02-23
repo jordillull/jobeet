@@ -18,14 +18,31 @@
  */
 class JobeetCategoryPeer extends BaseJobeetCategoryPeer {
 
-  static public function getWithJobs()
+	static public function doSelectActive(Criteria $criteria)
+	{
+		//TODO
+		return self::doSelectOne($criteria);
+	}
+	
+  static public function getWithJobs($category)
 	{
 		$criteria = new Criteria();
 		$criteria->addJoin(self::ID, JobeetJobPeer::CATEGORY_ID);
 		$criteria->add(JobeetJobPeer::EXPIRES_AT, time(), Criteria::GREATER_THAN);
+
+		if (!is_null($category))
+		{
+			$criteria->add(JobeetCategoryPeer::ID, $category->getId());
+		}
+
 		$criteria->setDistinct();
 
 		return self::doSelect($criteria);
+	}
+
+	static public function getJobsByCategory()
+	{
+		return $this->getWithJobs($criteria);
 	}
 
 } // JobeetCategoryPeer
