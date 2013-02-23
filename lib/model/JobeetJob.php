@@ -18,6 +18,17 @@
  */
 class JobeetJob extends BaseJobeetJob {
 
+	public function save(PropelPDO $con = null)
+	{
+		if ($this->isNew() && !$this->getExpiresAt())
+		{
+			$now = $this->getCreatedAt() ? $this->getCreatedAt('U') : time();
+			$this->setExpiresAt($now + 86400 * sfConfig::get('app_active_days'));
+		}
+
+		return parent::save($con);
+	}
+	
 	public function getCompanySlug()
 	{
 		return Jobeet::slugify($this->getCompany());
@@ -45,7 +56,7 @@ class JobeetJob extends BaseJobeetJob {
 	public function __construct()
 	{
 		// Make sure that parent constructor is always invoked, since that
-		// is where any default values for this object are set.
+		// is where any default values for this object are set.  
 		parent::__construct();
 	}
 
