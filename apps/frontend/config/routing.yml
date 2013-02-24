@@ -2,8 +2,8 @@ job:
   class:   sfPropelRouteCollection
   options: { model: JobeetJob }
 
-job_category:
-  url: /category/:name_slug/:id
+category:
+  url: /category/:slug
   class: sfPropelRoute
   options:
     model: JobeetCategory
@@ -12,8 +12,8 @@ job_category:
   requirements:
     sf_method: [get] 
   param: 
-    module: job
-    action: category
+    module: category 
+    action: show
 
  
 job_show_user:

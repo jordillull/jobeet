@@ -14,12 +14,6 @@ class jobActions extends sfActions
 		$this->categories = JobeetCategoryPeer::getWithJobs(null);
   } 
 
-  public function executeCategory(sfWebRequest $request)
-	{
-		$this->category = $this->getRoute()->getObject();
-		$this->categories = JobeetCategoryPeer::getWithJobs($this->category);
-	}
-
   public function executeShow(sfWebRequest $request)
   {
 		$this->job = $this->getRoute()->getObject();

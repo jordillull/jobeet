@@ -18,7 +18,17 @@
  */
 class JobeetJobPeer extends BaseJobeetJobPeer {
 
-	static public function getActiveJobs($criteria)
+	static public function getActiveJobs(Criteria $criteria = null)
+	{ 
+		return self::doSelect(self::AddActiveJobsCriteria($criteria));
+	}
+
+	static public function countActiveJobs(Criteria $criteria = null)
+	{
+		return self::doCount(self::AddActiveJobsCriteria($criteria));
+	}
+
+	static public function addActiveJobsCriteria(Criteria $criteria = null)
 	{
 		if (is_null($criteria))
 		{
@@ -28,14 +38,12 @@ class JobeetJobPeer extends BaseJobeetJobPeer {
 		$criteria->add(self::EXPIRES_AT, time(), Criteria::GREATER_THAN);
 		$criteria->addDescendingOrderByColumn(self::EXPIRES_AT);
 
-		return self::doSelect($criteria);
+		return $criteria;
 	}
 
 	static public function doSelectActive(Criteria $criteria)
-	{
-		$criteria->add(self::EXPIRES_AT, time(), Criteria::GREATER_THAN);
-
-		return self::doSelectOne($criteria);
+	{ 
+		return self::doSelectOne(self::addActiveJobsCriteria($criteria));
 	}
 
 } // JobeetJobPeer
