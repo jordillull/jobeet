@@ -9,7 +9,7 @@ function create_category($name)
 	return $category;
 }
 
-$t = new lime_test(3);
+$t = new lime_test(2);
 
 $category = create_category('Web developer');
 

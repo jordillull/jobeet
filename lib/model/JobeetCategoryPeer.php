@@ -36,6 +36,7 @@ class JobeetCategoryPeer extends BaseJobeetCategoryPeer {
 		}
 
 		$criteria->setDistinct();
+		$criteria->add(JobeetJobPeer::IS_ACTIVATED, true);
 
 		return self::doSelect($criteria);
 	}

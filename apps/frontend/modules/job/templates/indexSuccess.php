@@ -7,9 +7,7 @@
 				<div class="feed">
 					<a href="">Feed</a>
 				</div>
-				<a href="<?php echo url_for('category', $category) ?>">
-					<h1><?php echo $category ?></h1> 
-				</a>
+				<h1><a href="<?php echo url_for('category', $category) ?>"><?php echo $category ?></a></h1>
 			</div> 
 
 	<?php include_partial('job/list', array('jobs' => $category->getActiveJobs(sfConfig::Get('app_max_jobs_on_homepage')))) ?>

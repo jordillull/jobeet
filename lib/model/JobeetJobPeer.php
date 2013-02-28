@@ -17,6 +17,13 @@
  * @package    lib.model
  */
 class JobeetJobPeer extends BaseJobeetJobPeer {
+	
+	static public $types = array(
+		'full-time' => 'Full time',
+		'part-time' => 'Part time',
+		'freelance' => 'Freelance'
+		);
+
 
 	static public function getActiveJobs(Criteria $criteria = null)
 	{ 
@@ -36,6 +43,7 @@ class JobeetJobPeer extends BaseJobeetJobPeer {
 		}
 
 		$criteria->add(self::EXPIRES_AT, time(), Criteria::GREATER_THAN);
+		$criteria->add(self::IS_ACTIVATED, true);
 		$criteria->addDescendingOrderByColumn(self::EXPIRES_AT);
 
 		return $criteria;
